@@ -8,9 +8,8 @@ class page_vendor extends Page {
 
 		$crud = $this->add('CRUD');
 		$crud->setModel('Vendor');
-
-		// $crud->grid->addQuickSearch(['name']);
-
+		//$crud->grid->addQuickSearch( [ 'name' ,'address' ] );
+		//$crud->grid->addPaginator(2);
 	}
 	
 }

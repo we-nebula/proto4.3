@@ -11,6 +11,8 @@ class page_index extends Page {
 		$col2=$cols->addColumn(4);
 		$col3=$cols->addColumn(4);
 
+		$col2->add('text')->set('Welcome to dashboard');
+
 		$col2->add('H3')->set('FORM HERE');
 		$form= $col2->add('Form');
 		$form->addField('name')->validate('required|len|>3');

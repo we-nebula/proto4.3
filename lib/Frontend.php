@@ -24,46 +24,62 @@ class Frontend extends ApiFrontend {
         $auth->check();
         $this->app->employee = $auth->model;
 
-        // $this->app->top_menu = $this->app->layout->add('Menu_TopBar',null,'Main_Menu');
+        //$this->app->top_menu = $this->app->layout->add('Menu_TopBar',null,'Main_Menu');
         // $this->app->side_menu = $this->app->layout->add('Menu_SideBar',null,'Side_Menu');
       
 
         // $sys_menu = $this->app->top_menu->addMenu('System');
         // $cat_menu = $this->app->top_menu->addMenu('Catelogue');
         // $cat_menu->addItem(['Categories','icon'=>'fa fa-users'],$this->app->url('category'));
-        $m=$this->add('Menu_Horizontal',null,'Menu');
+
+        //$e = $this->add('TopMenu',null,'Top_Menu');
+        //$e->addItem('Test','test');
+
+
+        $m = $this->add('Menu_Horizontal',null,'Menu');
         $m->addItem('Dashboard','index');
+
+        $t = $m->addMenu('Catelogue');
+        $t->addItem('Category','category');
+        $t->addItem('Product','product');
+
+        $t = $m->addMenu('Vendor');
+        $t->addItem('Vendor','vendor');
+
+        $t = $m->addMenu('App Users');
+        $t->addItem(['Users','icon'=>'fa fa-users'],'appusers');
+        $t->addItem('Wallet','wallet');
+
+        $t = $m->addMenu('Micro Influencers');
+        $t->addItem('Micro Influencers','micro_influencers');
+
+        $t = $m->addMenu('Content');
+        $t->addItem('Page content','pagecontent');
+        $t->addItem('Banner','banner');
         
         $t = $m->addMenu('System');
         $t->addItem('Department','department');
         $t->addItem('Post','post');
         $t->addItem('Employee','employee');
-        $t->addItem('Settings','settings');
-        $t->addItem('Coupon','coupon');
-        $t->addItem('Discount','discount');
-        $t->addItem('Wallet','wallet');
+        $s = $t->addMenu('Settings');
+        $s->addItem('Member Type','membertype');
+        $s->addItem('Coupon','coupon');
+        $s->addItem('Discount','discount');
+        $s->addItem('Points','point');
+        $s->addItem('City','city');
         
-        //$t = $m->addMenu('Reports','reports');
+        $t = $m->addMenu('Reports');
+        $t->addItem('Order','order');
         //$t->addItem('Track Order','track_order');
 
-        $t = $m->addMenu('App Users');
-        $t->addItem('Users','appusers');
-
-        $t = $m->addMenu('Vendor');
-        $t->addItem('Vendor','vendor');
-
-
-
-        $t = $m->addMenu('Catelogue');
-        $t->addItem('Category','category');
-        $t->addItem('Product','product');
-        $t = $m->addMenu('Plan');
+        /*$t = $m->addMenu('Plan');
         $t->addItem('a','B');
         $t = $m->addMenu('Commissions');
         $t->addItem('a','B');
-        $m->addMenuItem('logout','Logout');
-            ;
 
+        $t = $m->addItem('Learn','learn');*/
+
+        $m->addMenuItem('logout','Logout');
         // $this->addLayout('UserMenu');
 
         $this->addStylesheet('we');

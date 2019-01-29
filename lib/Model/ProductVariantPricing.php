@@ -1,13 +1,13 @@
 <?php
 
 
-class Model_ProductPricing extends Model_Table {
-	public $table= 'product_pricing';
+class Model_ProductVariantPricing extends Model_Table {
+	public $table= 'product_variant_pricing';
 
 	function init(){
 		parent::init();
 
-		$this->hasOne('Product','product_id');
+		$this->hasOne('ProductVariant','variant_id');
 		$this->hasOne('MemberType','membertype_id')->hint('Can add multiple group price');
 		$this->addField('mrp');
 		$this->addField('sale');
@@ -20,5 +20,5 @@ class Model_ProductPricing extends Model_Table {
 			'mrp|to_trim|required|int',
 			'sale|int'
 		]);
-	}
+	} 
 }
