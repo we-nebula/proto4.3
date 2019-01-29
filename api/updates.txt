@@ -1,0 +1,18 @@
+<div id="updatemsg" class="label label-danger" style="cursor:pointer">Update Msg 25 May 2018 - RC 1</div>
+<script>
+$('#updatemsg').on('click',function(ev){
+$.univ().dialogOK(
+"Update Msg",
+'<ul> \
+<li><b>Major Changes with leads creation and setting up initial communication</b></li> \
+<li>25-May: ECR csv file export from HR Salary Sheet now can control decimal places in salaries</li> \
+<li>24-May: Communication has followup just below for easy access, Score now stores communication hint in remarks</li> \
+<li>24-May: Status based Filter is now in Top bar for easy approach and better view</li> \
+<li>24-May: FileManager and elFinder now senitizes name of new file or folder uploaded or created </li> \
+<li>23-May: All Reports in easy access from dashboard</li> \
+<li>10-May: Employee self performance booster point system implmented. Easy tracking and objective analysis added. Now manage Regular-Tasks for staff.</li> \
+Call us now to update. \
+'
+);
+});
+</script></small>

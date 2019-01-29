@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e233df7d2dab988ff066fbdccf0323b7",
+    "packages": [
+        {
+            "name": "xepan/atk4",
+            "version": "4.3.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xepan/atk4.git",
+                "reference": "47d0ef45ea41c0ab5540b4ba352be24247e6b5d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xepan/atk4/zipball/47d0ef45ea41c0ab5540b4ba352be24247e6b5d3",
+                "reference": "47d0ef45ea41c0ab5540b4ba352be24247e6b5d3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "lib/"
+                },
+                "files": [
+                    "/lib/static.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "fork from atk4/atk4",
+            "homepage": "https://agiletoolkit.org/",
+            "keywords": [
+                "atk4",
+                "framework"
+            ],
+            "time": "2018-12-03T11:24:45+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "xepan/atk4": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

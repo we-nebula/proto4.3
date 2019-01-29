@@ -1,0 +1,19 @@
+{
+    "name": "nebula/we",
+    "description": "We commission engine",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gowrav Vishwakarma",
+            "email": "gowravvishwakarma@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "xepan/atk4": "4.3.x-dev"
+    },
+    "autoload": {
+        "psr-0": { "autocomplete": "lib" }
+    }
+}
