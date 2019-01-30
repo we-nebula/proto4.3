@@ -9,11 +9,6 @@ class page_product extends Page {
 		$crud = $this->add('CRUD');
 		$crud->setModel('Product');
 
-		if($p= $crud->addFrame('HAHAH')){
-			
-		}
-		// $crud->grid->addQuickSearch(['name']);
-
 	}
 	
 }
