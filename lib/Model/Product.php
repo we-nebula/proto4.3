@@ -84,6 +84,8 @@ class Model_Product extends Model_Table {
 					'p2' => 'c2~4',
 					'p3' => 'c3~4',
 					'p4' => 'c4~4',
+					'discovery_fund' => 'Other details~c1~6',
+					'floating_days' => 'c2~6'
 				]);
 		}
 		$c->setModel($m);
