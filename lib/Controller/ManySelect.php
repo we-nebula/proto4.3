@@ -16,28 +16,31 @@ class Controller_ManySelect extends AbstractController {
 		$this->association_model->addCondition($this->first_field_in_association,$this->first_model->id);
 		$old_associats = array_column($this->association_model->getRows(), $this->second_field_in_association);
 
-		$form = $this->owner->add('Form');
-		$selected_field = $form->addField('Text','selected');
-		$selected_field->set(json_encode($old_associats));
-		$form->addSubmit('Update');
 
 		$grid = $this->owner->add('Grid');
 		$grid->setModel($this->second_model,$this->grid_fields);
-		$grid->addSelectable($selected_field);
 		$grid->addPaginator(100);
+		
+		$form = $this->owner->add('Form');
+		$selected_field = $form->addField('hidden','selected');
+		$selected_field->set(json_encode($old_associats));
+		$form->addSubmit('Update');
+		
+		$grid->addSelectable($selected_field);
 
 		if($form->isSubmitted()){
 
 			$selected = json_decode($form['selected'],true);
+						
 			// remove differences of old_products and selected products
-
 			if($this->delete_old){
-				$un_selected = array_merge([0],array_diff($selected, $old_associats));
-
-				$m = $this->association_model->newInstance();
-				$m->addCondition($this->first_field_in_association,$this->first_model->id);
-				$m->addCondition($this->second_field_in_association,$un_selected);
-				$m->deleteAll();
+				$un_selected = array_diff($old_associats, $selected);
+				if(count($un_selected)>0){
+					$m = $this->association_model->newInstance();
+					$m->addCondition($this->first_field_in_association,$this->first_model->id);
+					$m->addCondition($this->second_field_in_association,$un_selected);
+					$m->deleteAll();
+				}
 			}
 			
 
@@ -48,6 +51,8 @@ class Controller_ManySelect extends AbstractController {
 				$m->tryLoadAny();
 				if(!$m->loaded()) $m->save();
 			}
+
+			$this->app->page_action_result = $form->js()->reload();
 			
 		}
 	}

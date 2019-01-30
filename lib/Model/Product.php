@@ -62,7 +62,28 @@ class Model_Product extends Model_Table {
 		$m->addCondition('product_id',$this->id);
 
 		$c = $p->add('CRUD');
+
+		if($c->isEditing()){
+			$form= $c->form;
+			$form->add('Controller_FLC')
+			->showLables(true)
+			->makePanelsCoppalsible(true)
+			->addContentSpot()
+			->layout([
+					'membertype_id~Member Type'=>'Basic Price~c1~4',
+					'mrp'=>'c2~4',
+					'sale'=>'c3~4',
+					'effective_from'=>'c4~4', // closed to make panel default collapsed
+					'effective_to'=>'c5~4',
+					'resller_discount'=>'Resller~c1~4',
+					'resller_drawable_cashback' => 'c2~4',
+					'reseller_non_drawable_cashback' => 'c3~4',
+					'network_drawable_cashback' => 'Network~c1~6',
+					'network_non_drawable_cashback' => 'c2~6',
+				]);
+		}
 		$c->setModel($m);
+
 	}
 
 	function page_variant($p)
