@@ -15,7 +15,7 @@ class Model_ProductVariant extends Model_Table {
 
 	public $actions=[
 		'Active'=>['view','edit','delete','deactivate','pricing'],
-		'InActive'=>['view','edit','delete','activate'],
+		'InActive'=>['view','edit','delete','activate']
 	];
 
 	function init(){
@@ -30,6 +30,7 @@ class Model_ProductVariant extends Model_Table {
 
 		$this->hasMany('ProductVariant','attribute_id');
 		$this->hasMany('ProductVariant','product_id');
+		//$this->hasMany('ProductVariantPricing','variant_id');
 		
 		$this->add('dynamic_model/Controller_AutoCreator');
 
@@ -50,9 +51,10 @@ class Model_ProductVariant extends Model_Table {
 		$this->save();
 	}
 
-	function page_pricing($p){
+	function page_variantpricing($p){
+
 		$m= $this->add('Model_ProductVariantPricing');
-		$m->addCondition('product_id',$this->id);
+		$m->addCondition('variant_id',$this->id);
 
 		$c = $p->add('CRUD');
 		$c->setModel($m);

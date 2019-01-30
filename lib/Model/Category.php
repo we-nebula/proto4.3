@@ -48,14 +48,21 @@ class Model_Category extends Model_Table {
 		$this['status']='Active';
 		$this->save();
 	}
+
+
 	function page_product($p)
 	{
 		//$this->add('text')->set('Display all products. Here we can add/update products.');
 		$m= $this->add('Model_ProductCategoryAssociate');
 		$m->addCondition('category_id',$this->id);
 
-		$c = $p->add('CRUD');
-		$c->setModel($m);
+		$grid = $p->add('Grid');
+		$grid->setModel('Product',['name']);
+
+		$grid->addPaginator(100);
+
+		// $c = $p->add('CRUD');
+		// $c->setModel($m);
 	}
 
 }

@@ -7,7 +7,7 @@ class Model_ProductVariantPricing extends Model_Table {
 	function init(){
 		parent::init();
 
-		$this->hasOne('ProductVariant','variant_id');
+		//$this->hasOne('ProductVariant','variant_id');
 		$this->hasOne('MemberType','membertype_id')->hint('Can add multiple group price');
 		$this->addField('mrp');
 		$this->addField('sale');
