@@ -46,9 +46,11 @@ class Frontend extends ApiFrontend {
         $t = $m->addMenu('Vendor');
         $t->addItem('Vendor','vendor');
 
-        $t = $m->addMenu('Micro Influencers');
-        $t->addItem(['Users','icon'=>'fa fa-users'],'appusers');
-        $t->addItem('Wallet','wallet');
+        //$t = $m->addMenu('Users');
+        //$t->addItem(['Users','icon'=>'fa fa-users'],'appusers');
+        //$t->addItem('Wallet','wallet');
+
+        $m->addItem(['Users'],'appusers');
 
         //$t = $m->addMenu('Micro Influencers');
         //$t->addItem('Micro Influencers','micro_influencers');

@@ -14,8 +14,8 @@ class Model_AppUser extends Model_Table {
 	];
 
 	public $actions=[
-		'Active'=>['view','edit','delete','deactivate','communication','email'],
-		'InActive'=>['view','edit','delete','activate','communication'],
+		'Active'=>['view','edit','delete','deactivate','wallet'],
+		'InActive'=>['view','edit','delete','activate'],
 	];
 
 	function init(){
@@ -26,7 +26,7 @@ class Model_AppUser extends Model_Table {
 		$this->addField('name');
 		$this->addField('status')->enum($this->status)->defaultValue('Active');
 
-
+		$this->hasMany('Wallet','user_id');
 
 		$this->add('dynamic_model/Controller_AutoCreator');
 
@@ -45,5 +45,14 @@ class Model_AppUser extends Model_Table {
 	function activate(){
 		$this['status']='Active';
 		$this->save();
+	}
+
+	function page_wallet($p)
+	{
+		$m= $this->add('Model_Wallet');
+		$m->addCondition('user_id',$this->id);
+
+		$c = $p->add('CRUD');
+		$c->setModel($m);
 	}
 }

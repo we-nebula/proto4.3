@@ -62,6 +62,7 @@ class Model_Product extends Model_Table {
 		$m->addCondition('product_id',$this->id);
 
 		$c = $p->add('CRUD');
+		//$c->setModel('ProductPricing',['name']);
 
 		if($c->isEditing()){
 			$form= $c->form;
