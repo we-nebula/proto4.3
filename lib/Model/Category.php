@@ -61,8 +61,11 @@ class Model_Category extends Model_Table {
 			'first_field_in_association'=>"category_id",
 			'second_field_in_association'=>"product_id",
 			'grid_fields'=>['name','sku'],
-			'delete_old'=>true
+			'delete_old'=>true,
+			'search_fields' => ['name','sku']
 		]);
+
+		//$crud->grid->addQuickSearch( [ 'name' ,'monile_no' ] );
 
 
 		// $m= $this->add('Model_ProductCategoryAssociate');

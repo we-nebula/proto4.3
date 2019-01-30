@@ -9,6 +9,7 @@ class Controller_ManySelect extends AbstractController {
 	public $delete_old=true;
 	public $first_field_in_association=null;
 	public $second_field_in_association=null;
+	public $search_fields = null;
 
 	function init(){
 		parent::init();
@@ -20,6 +21,7 @@ class Controller_ManySelect extends AbstractController {
 		$grid = $this->owner->add('Grid');
 		$grid->setModel($this->second_model,$this->grid_fields);
 		$grid->addPaginator(100);
+		$grid->addQuickSearch($this->search_fields);
 		
 		$form = $this->owner->add('Form');
 		$selected_field = $form->addField('hidden','selected');
