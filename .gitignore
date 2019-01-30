@@ -2,3 +2,4 @@
 *.zip
 config.php
 atk4
+upload/*
