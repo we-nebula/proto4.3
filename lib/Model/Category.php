@@ -58,9 +58,9 @@ class Model_Category extends Model_Table {
 			'first_model'=> $this,
 			'second_model'=>$this->add('Model_Product'),
 			'association_model' => $this->add('Model_ProductCategoryAssociate'),
-			'first_field_in_association'="category_id",
-			'second_field_in_association'="product_id",
-			'grid_fields'=>['name','sku']
+			'first_field_in_association'=>"category_id",
+			'second_field_in_association'=>"product_id",
+			'grid_fields'=>['name','sku'],
 			'delete_old'=>true
 		]);
 

@@ -13,7 +13,7 @@ class Controller_ManySelect extends AbstractController {
 	function init(){
 		parent::init();
 
-		$this->association_model->addCondition($this->first_field_in_association,$first_model->id);
+		$this->association_model->addCondition($this->first_field_in_association,$this->first_model->id);
 		$old_associats = array_column($this->association_model->getRows(), $this->second_field_in_association);
 
 		$form = $this->owner->add('Form');
@@ -35,7 +35,7 @@ class Controller_ManySelect extends AbstractController {
 				$un_selected = array_merge([0],array_diff($selected, $old_associats));
 
 				$m = $this->association_model->newInstance();
-				$m->addCondition($this->first_field_in_association,$first_model->id);
+				$m->addCondition($this->first_field_in_association,$this->first_model->id);
 				$m->addCondition($this->second_field_in_association,$un_selected);
 				$m->deleteAll();
 			}
@@ -43,7 +43,7 @@ class Controller_ManySelect extends AbstractController {
 
 			foreach ($selected as $s) {
 				$m = $this->association_model->newInstance();
-				$m->addCondition($this->first_field_in_association,$first_model->id);
+				$m->addCondition($this->first_field_in_association,$this->first_model->id);
 				$m->addCondition($this->second_field_in_association,$s);
 				$m->tryLoadAny();
 				if(!$m->loaded()) $m->save();
