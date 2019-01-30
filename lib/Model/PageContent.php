@@ -25,7 +25,8 @@ class Model_PageContent extends Model_Table {
 		$this->addField('name');
 		$this->addfield('description')->type('text')->display(['form'=>'RichText']);
 		$this->addField('url');
-		$this->addField('image')->hint('Add image option');
+		//$this->addField('image')->hint('Add image option');
+		$this->add('filestore/Field_Image','image');
 		$this->addField('status')->enum($this->status)->defaultValue('Active');
 
 		$this->add('dynamic_model/Controller_AutoCreator');

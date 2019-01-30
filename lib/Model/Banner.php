@@ -24,8 +24,10 @@ class Model_Banner extends Model_Table {
 		$this->hasOne('Employee','created_by_id')->defaultValue($this->app->auth->model->id)->system(true);
 		$this->addField('bannertype')->enum(['Video','Image']);
 		$this->addField('displayon')->setValueList(['Homepage','Category','Product']);
-		$this->addField('image')->hint('Add image option, when banner type is image');
-		$this->addField('video')->hint('Add video option, when banner type is video');
+		//$this->addField('image')->hint('Add image option, when banner type is image');
+		$this->add('filestore/Field_Image','image');
+		$this->add('filestore/Field_File','video');
+		//$this->addField('video')->hint('Add video option, when banner type is video');
 		$this->addfield('alt');
 		$this->addField('status')->enum($this->status)->defaultValue('Active');
 
