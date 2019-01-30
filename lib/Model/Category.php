@@ -53,46 +53,58 @@ class Model_Category extends Model_Table {
 	function page_product($p)
 	{
 		//$this->add('text')->set('Display all products. Here we can add/update products.');
-		$m= $this->add('Model_ProductCategoryAssociate');
-		$m->addCondition('category_id',$this->id);
 
-		$old_products = array_column($m->getRows(),'product_id');
+		$p->add('Controller_ManySelect',[
+			'first_model'=> $this,
+			'second_model'=>$this->add('Model_Product'),
+			'association_model' => $this->add('Model_ProductCategoryAssociate'),
+			'first_field_in_association'="category_id",
+			'second_field_in_association'="product_id",
+			'grid_fields'=>['name','sku']
+			'delete_old'=>true
+		]);
 
-		$form = $p->add('Form');
-		$prod_field = $form->addField('Text','selected_products');
-		$prod_field->set(json_encode($old_products));
-		$form->addSubmit('Update');
 
-		$grid = $p->add('Grid');
-		$grid->setModel('Product',['name','sku']);
+		// $m= $this->add('Model_ProductCategoryAssociate');
+		// $m->addCondition('category_id',$this->id);
 
-		$grid->addSelectable($prod_field);
+		// $old_products = array_column($m->getRows(),'product_id');
 
-		$grid->addPaginator(100);
+		// $form = $p->add('Form');
+		// $prod_field = $form->addField('Text','selected_products');
+		// $prod_field->set(json_encode($old_products));
+		// $form->addSubmit('Update');
 
-		if($form->isSubmitted()){
+		// $grid = $p->add('Grid');
+		// $grid->setModel('Product',['name','sku']);
 
-			$selected_products = json_decode($form['selected_products'],true);
-			// remove differences of old_products and selected products
+		// $grid->addSelectable($prod_field);
 
-			$un_selected = array_merge([0],array_diff($selected_products, $old_products));
+		// $grid->addPaginator(100);
+
+		// if($form->isSubmitted()){
+
+		// 	$selected_products = json_decode($form['selected_products'],true);
+		// 	// remove differences of old_products and selected products
+
+		// 	$un_selected = array_merge([0],array_diff($selected_products, $old_products));
+
+		// 	$m= $this->add('Model_ProductCategoryAssociate');
+		// 	$m->addCondition('category_id',$this->id);
+		// 	$m->addCondition('product_id',$un_selected);
+		// 	$m->deleteAll();
 			
-			$m= $this->add('Model_ProductCategoryAssociate');
-			$m->addCondition('category_id',$this->id);
-			$m->addCondition('product_id',$un_selected);
-			$m->deleteAll();
-			
 
-			foreach ($selected_products as $sp) {
-				$m= $this->add('Model_ProductCategoryAssociate');
-				$m->addCondition('category_id',$this->id);
-				$m->addCondition('product_id',$sp);
-				$m->tryLoadAny();
-				if(!$m->loaded()) $m->save();
+		// 	foreach ($selected_products as $sp) {
+		// 		$m= $this->add('Model_ProductCategoryAssociate');
+		// 		$m->addCondition('category_id',$this->id);
+		// 		$m->addCondition('product_id',$sp);
+		// 		$m->tryLoadAny();
+		// 		if(!$m->loaded()) $m->save();
 
-			}
+		// 	}
 			
-		}
+		// }
 
 		// $c = $p->add('CRUD');
 		// $c->setModel($m);
