@@ -21,8 +21,13 @@ class Model_ProductPricing extends Model_Table {
 		$this->addField('network_drawable_cashback');
 		$this->addField('network_non_drawable_cashback');
 
+		$this->addField('p1');
+		$this->addField('p2');
+		$this->addField('p3');
+		$this->addField('p4');
+
 		$this->addField('discovery_fund');
-		$this->addField('floating_days')->hint('Return Policy');
+		$this->addField('floating_days')->hint('Return policy days');
 
 		$this->add('dynamic_model/Controller_AutoCreator');
 

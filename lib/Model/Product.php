@@ -80,6 +80,10 @@ class Model_Product extends Model_Table {
 					'reseller_non_drawable_cashback' => 'c3~4',
 					'network_drawable_cashback' => 'Network~c1~6',
 					'network_non_drawable_cashback' => 'c2~6',
+					'p1' => 'Purchase Points~c1~4',
+					'p2' => 'c2~4',
+					'p3' => 'c3~4',
+					'p4' => 'c4~4',
 				]);
 		}
 		$c->setModel($m);
