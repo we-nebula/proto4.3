@@ -25,7 +25,7 @@ class Model_Vendor extends Model_Table {
 		$this->addField('name');
 		$this->addfield('description')->type('text')->display(['form'=>'RichText']);
 		$this->addfield('address')->type('text')->display(['form'=>'RichText']);
-		$this->addField('type')->enum(['Vendor','Reseller']);
+		$this->addField('type')->enum(['Vendor','Reseller'])->defaultValue('Vendor');
 		$this->addField('status')->enum($this->status)->defaultValue('Active');
 
 
