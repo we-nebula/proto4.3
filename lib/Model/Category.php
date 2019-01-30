@@ -56,10 +56,43 @@ class Model_Category extends Model_Table {
 		$m= $this->add('Model_ProductCategoryAssociate');
 		$m->addCondition('category_id',$this->id);
 
+		$old_products = array_column($m->getRows(),'product_id');
+
+		$form = $p->add('Form');
+		$prod_field = $form->addField('Text','selected_products');
+		$prod_field->set(json_encode($old_products));
+		$form->addSubmit('Update');
+
 		$grid = $p->add('Grid');
-		$grid->setModel('Product',['name']);
+		$grid->setModel('Product',['name','sku']);
+
+		$grid->addSelectable($prod_field);
 
 		$grid->addPaginator(100);
+
+		if($form->isSubmitted()){
+
+			$selected_products = json_decode($form['selected_products'],true);
+			// remove differences of old_products and selected products
+
+			$un_selected = array_merge([0],array_diff($selected_products, $old_products));
+			
+			$m= $this->add('Model_ProductCategoryAssociate');
+			$m->addCondition('category_id',$this->id);
+			$m->addCondition('product_id',$un_selected);
+			$m->deleteAll();
+			
+
+			foreach ($selected_products as $sp) {
+				$m= $this->add('Model_ProductCategoryAssociate');
+				$m->addCondition('category_id',$this->id);
+				$m->addCondition('product_id',$sp);
+				$m->tryLoadAny();
+				if(!$m->loaded()) $m->save();
+
+			}
+			
+		}
 
 		// $c = $p->add('CRUD');
 		// $c->setModel($m);
