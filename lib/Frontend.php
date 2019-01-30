@@ -54,6 +54,7 @@ class Frontend extends ApiFrontend {
 
         $t = $m->addMenu(['Commerce']);
         $t->addItem('PurchaseInvoice','purchaseinvoice');
+        $t->addItem('SaleInvoice','saleinvoice');
 
         //$t = $m->addMenu('Micro Influencers');
         //$t->addItem('Micro Influencers','micro_influencers');
