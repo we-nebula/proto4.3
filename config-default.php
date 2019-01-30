@@ -10,4 +10,4 @@ $config['developer_mode'] = true;
 
 $config['filestore']['chmod'] = 0755;
 
-$config['dsn']='mysql://root:winserver@127.0.0.1/we';
+$config['dsn']='mysql://username:password@127.0.0.1/we';
