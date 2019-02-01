@@ -25,6 +25,7 @@ class Model_QSPMaster extends Model_Table {
 		$this->hasMany('QSPDetail','qsp_master_id');
 
 		$this->addExpression('total_amount')->set($this->refSQL('QSPDetail')->sum('amount'));
+		//$this->addExpression('final_amount')->set($this->sum('total_amount'));
 
 		$this->add('dynamic_model/Controller_AutoCreator');
 
@@ -33,6 +34,11 @@ class Model_QSPMaster extends Model_Table {
 		]);
 
 
+	}
+
+	function newInvoiceNumber(){
+		return 
+		$this->newInstance()->_dsql()->del('fields')->field('MAX(invoice_no)')->getOne() + 1;
 	}
 
 	function deactivate(){
